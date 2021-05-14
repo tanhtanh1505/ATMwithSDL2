@@ -1,0 +1,2 @@
+D:\C++\atm\Debug\atm.exe
+D:\C++\atm\Debug\atm.pdb
