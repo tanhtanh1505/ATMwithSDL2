@@ -15,16 +15,13 @@ static int choose = -1;
 static Account* currentAccount = NULL;
 static int bank[501];
 
-static Inputer userInput;
-static Inputer passwordInput;
-
 using namespace TA;
 using namespace CASHW;
 
 namespace ATM {
 	void initDaTa(vector<Account>& list_account, int bank[], vector<NumberButton>& obn, vector<MenuButton>& obb);
 	void selectMenu(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>& obb, int& choose, Mix_Chunk*& soundbeep);
-	void creatAccount(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<Account>& list_account, Mix_Chunk*& soundbeep);
+	bool creatAccount(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<Account>& list_account, Mix_Chunk*& soundbeep);
 	bool loginAccount(vector<Account>& list_account, Account*& currentAccount, SDL_Event event, vector<NumberButton>& obn,
 		Inputer& userInput, Inputer& passwordInput, int & menuCurrent, SDL_Renderer* renderer, Mix_Chunk*& soundbeep);
 	

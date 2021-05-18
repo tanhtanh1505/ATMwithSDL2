@@ -13,7 +13,6 @@ private:
 	string timeCreat;
 	string history;
 	int money;
-	bool active;
 	int numFail;
 	bool logSuccess;
 
@@ -33,8 +32,8 @@ public:
 	bool checkAccount(string s);
 
 	string getDateCreat() const { return timeCreat; }
-	string getUserName() const { return user_name; }
-	bool checkActive() const { return active; }
+	//string getUserName() const { return user_name; }
+	bool checkActive() const { return numFail <= 3; }
 	bool loginSuccess() const { return logSuccess; }
 	int getAccountBalance() const { return money; }
 };

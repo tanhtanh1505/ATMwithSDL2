@@ -3,8 +3,9 @@
 using namespace ATM;
 
 int main(int argc, char* argv[]) {
-LOOP:
+
 	initSDL(window, renderer, soundbeep);
+LOOP:
 	const int numTexture = 8;
 	string menuTexture[numTexture] = { "atmstart.png", "menuatm.png", "iduser.png",
 		"pwuser.png", "notexist.png", "depo.png", "deposuc.png", "cashwd.png"};
@@ -18,8 +19,14 @@ LOOP:
 
 	vector<MenuButton> obb(5);
 
-	initDaTa(list_account, bank, obn, obb);
 
+	initDaTa(list_account, bank, obn, obb);
+START:
+
+	Inputer userInput;
+	Inputer passwordInput;
+	choose = -1;
+	menuCurrent = 0;
 	while (!quit) {
 		while (SDL_PollEvent(&event) != 0)
 		{
@@ -50,6 +57,8 @@ LOOP:
 	//Menu Select-------------------------------------------------
 	if (false) {
 	MENUSELECT:
+		Inputer checklog;
+		saveDaTa(list_account, bank);
 		menuCurrent = 1;
 		choose = -1;
 		while (!quit) {
@@ -82,7 +91,10 @@ LOOP:
 				currentAccount->print();
 				choose = 0;
 			}
-
+			if (checklog.readNumberInput(event, obn, soundbeep) == false) {
+				currentAccount = NULL;
+				goto START;
+			}
 			SDL_RenderPresent(renderer);
 		}
 
@@ -91,35 +103,26 @@ LOOP:
 	//CreatAccount----------------------------------------------
 	if (false) {
 	CREATACCOUNT:
-		creatAccount(renderer, event, obn, list_account, soundbeep);
+		if (creatAccount(renderer, event, obn, list_account, soundbeep)) goto START;
 	}
 
 	//DepositMoney----------------------------------------------
 	if (false) {
 	DEPOSITMONEY:
-		if (depositMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) {
-			saveDaTa(list_account, bank);
-			goto MENUSELECT;
-		}
+		if (depositMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) goto MENUSELECT;
 	}
 
 	//CASHWITHDRAWALS-------------------------------------------
 
 	if (false) {
 	CASHWITHDRAWALS:
-		if (cashWithdrawals(renderer, event, obb, obn, choose, bank, currentAccount, list_account, soundbeep)) {
-			saveDaTa(list_account, bank);
-			goto MENUSELECT;
-		}
+		if (cashWithdrawals(renderer, event, obb, obn, choose, bank, currentAccount, list_account, soundbeep)) goto MENUSELECT;
 	}
 
 	//SENDMONEY--------------------------------------------------
 	if (false) {
 	SENDMONEY:
-		if (sendMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) {
-			saveDaTa(list_account, bank);
-			goto MENUSELECT;
-		}
+		if (sendMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) goto MENUSELECT;
 
 	}
 

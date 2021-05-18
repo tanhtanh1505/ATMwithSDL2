@@ -64,7 +64,7 @@ void ATM::selectMenu(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>
 	}
 }
 
-void ATM::creatAccount(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<Account>& list_account, Mix_Chunk*& soundbeep)
+bool ATM::creatAccount(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<Account>& list_account, Mix_Chunk*& soundbeep)
 {
 	string name_, username_, password_;
 	Inputer namei, usernamei, passwordi;
@@ -114,7 +114,7 @@ XXX:
 		SDL_RenderPresent(renderer);
 	}
 	for (auto x : list_account) {
-		if (x.getUserName() == username_) {
+		if (x.checkAccount(username_)) {
 			renderError(renderer, "acexist.png");
 			goto XXX;
 		}
@@ -149,7 +149,7 @@ XXX:
 	p.writeToSource(getTimeNow());
 	p.writeStatus("Account is created!");
 	list_account.push_back(p);
-
+	Inputer input;
 	creatacc = loadTexture(renderer, "creatsuccess.png");
 	while (!quit) {
 		while (SDL_PollEvent(&event) != 0)
@@ -162,9 +162,10 @@ XXX:
 		SDL_RenderClear(renderer);
 
 		SDL_RenderCopy(renderer, creatacc, NULL, NULL);
-
+		if (input.readNumberInput(event, obn, soundbeep) == false) return true;
 		SDL_RenderPresent(renderer);
 	}
+	return false;
 }
 
 bool ATM::loginAccount(vector<Account>& list_account, Account*& currentAccount, SDL_Event event, vector<NumberButton>& obn, 
@@ -342,7 +343,7 @@ bool ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton
 	}
 
 	for (int i = 0; i < list_account.size(); i++) {
-		if (list_account.at(i).getUserName() == usn) {
+		if (list_account.at(i).checkAccount(usn)) {
 			suc = true;
 			if (currentAccount->sendMoney(sm)) {
 				if (list_account.at(i).recieveMoney(sm)) {

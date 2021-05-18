@@ -14,9 +14,7 @@ Account::Account(int numFail_, string id_, string name_, string user_name_, stri
 	timeCreat = timeCreat_;
 	numFail = numFail_;
 	logSuccess = false;
-	if (numFail > 3) active = false;
-	else active = true;
-	history = to_string(stoi(id) % 8) + user_name + ".txt";
+	history = user_name + ".txt";
 }
 
 Account::~Account()
@@ -29,12 +27,11 @@ void Account::creatData(string name_, string username_, string password_)
 	user_name = username_;
 	password = password_;
 	money = 0;
-	active = true;
 	id = to_string(stoi(username_)/2) + to_string(rand() % 100);
 	timeCreat = getTimeNow();
 	numFail = 0;
 	logSuccess = false;
-	history = to_string(stoi(id) % 8) + user_name + ".txt";
+	history = user_name + ".txt";
 }
 
 void Account::print()
@@ -66,7 +63,6 @@ void Account::writeStatus(string s)
 bool Account::checkPass(string pw) {
 	numFail += 1;
 	if (numFail > 3) {
-		active = false;
 		writeStatus("Account locked!");
 		return false;
 	}

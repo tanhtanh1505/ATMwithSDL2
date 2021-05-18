@@ -1,11 +1,9 @@
 ﻿  ATMmachine.cpp
 D:\C++\atm\ATMmachine.cpp(56,22): warning C4018: '<': signed/unsigned mismatch
-D:\C++\atm\ATMmachine.cpp(180,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++\atm\ATMmachine.cpp(251,25): warning C4018: '<': signed/unsigned mismatch
-D:\C++\atm\ATMmachine.cpp(344,20): warning C4018: '<': signed/unsigned mismatch
-  Account.cpp
+D:\C++\atm\ATMmachine.cpp(181,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++\atm\ATMmachine.cpp(252,25): warning C4018: '<': signed/unsigned mismatch
+D:\C++\atm\ATMmachine.cpp(345,20): warning C4018: '<': signed/unsigned mismatch
   atm.cpp
-D:\C++\atm\atm.cpp(13,24): warning C4018: '<': signed/unsigned mismatch
-D:\C++\atm\atm.cpp(6,5): warning C4102: 'LOOP': unreferenced label
+D:\C++\atm\atm.cpp(14,24): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   atm.vcxproj -> D:\C++\atm\Debug\atm.exe
