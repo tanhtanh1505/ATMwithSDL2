@@ -3,6 +3,7 @@
 using namespace ATM;
 
 int main(int argc, char* argv[]) {
+LOOP:
 	initSDL(window, renderer, soundbeep);
 	const int numTexture = 8;
 	string menuTexture[numTexture] = { "atmstart.png", "menuatm.png", "iduser.png",
@@ -34,15 +35,14 @@ int main(int argc, char* argv[]) {
 		
 		selectMenu(renderer, event, obb, choose, soundbeep);
 		
-		if (choose == 2) {
-			goto CREATACCOUNT;
-		}
-		else if (choose == 1) {
+		if (choose == 1) {
 			if (loginAccount(list_account, currentAccount, event, obn, userInput, passwordInput, menuCurrent, renderer, soundbeep)) {
 				goto MENUSELECT;
 				//"\n1.Nap tien\n2.Rut tien\n3.Chuyen tien\n4.lich su\n5.so du\n";
 			}
-
+		}
+		else if (choose == 2) {
+			goto CREATACCOUNT;
 		}
 		SDL_RenderPresent(renderer);
 	}
@@ -97,27 +97,34 @@ int main(int argc, char* argv[]) {
 	//DepositMoney----------------------------------------------
 	if (false) {
 	DEPOSITMONEY:
-		depositMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep);
+		if (depositMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) {
+			saveDaTa(list_account, bank);
+			goto MENUSELECT;
+		}
 	}
 
 	//CASHWITHDRAWALS-------------------------------------------
 
 	if (false) {
 	CASHWITHDRAWALS:
-		cashWithdrawals(renderer, event, obb, obn, choose, bank, currentAccount, list_account, soundbeep);
+		if (cashWithdrawals(renderer, event, obb, obn, choose, bank, currentAccount, list_account, soundbeep)) {
+			saveDaTa(list_account, bank);
+			goto MENUSELECT;
+		}
 	}
 
 	//SENDMONEY--------------------------------------------------
 	if (false) {
 	SENDMONEY:
-		sendMoney(renderer, event, obn,obb,currentAccount,list_account,bank, soundbeep);
+		if (sendMoney(renderer, event, obn, obb, currentAccount, list_account, bank, soundbeep)) {
+			saveDaTa(list_account, bank);
+			goto MENUSELECT;
+		}
 
 	}
 
-	saveDaTa(list_account, bank);
 	currentAccount = NULL;
 	TA::quitSDL(window, renderer);
 	
-
 	return 0;
 }

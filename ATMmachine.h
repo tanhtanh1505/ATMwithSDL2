@@ -28,12 +28,12 @@ namespace ATM {
 	bool loginAccount(vector<Account>& list_account, Account*& currentAccount, SDL_Event event, vector<NumberButton>& obn,
 		Inputer& userInput, Inputer& passwordInput, int & menuCurrent, SDL_Renderer* renderer, Mix_Chunk*& soundbeep);
 	
-	void depositMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
+	bool depositMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
 		Account*& currentAccount, vector<Account>& list_account, int bank[], Mix_Chunk*& soundbeep);
 
-	void sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
+	bool sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
 		Account*& currentAccount, vector<Account>& list_account, int bank[], Mix_Chunk*& soundbeep);
-	void cashWithdrawals(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>& obb, vector<NumberButton> obn,
+	bool cashWithdrawals(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>& obb, vector<NumberButton> obn,
 		int& choose, int bank[], Account*& currentAccount, vector<Account>& list_account, Mix_Chunk*& soundbeep);
 	void saveDaTa(vector<Account> list_account, int bank[]);
 	

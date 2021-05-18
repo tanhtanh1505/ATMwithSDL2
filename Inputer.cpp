@@ -11,7 +11,7 @@ Inputer::~Inputer()
 {
 }
 
-void Inputer::readNumberInput(SDL_Event event, vector<NumberButton> obn, Mix_Chunk*& soundbeep)
+bool Inputer::readNumberInput(SDL_Event event, vector<NumberButton> obn, Mix_Chunk*& soundbeep)
 {
 	for (int i = 0; i < obn.size() - 3; i++) {
 		if (obn.at(i).clicked(event)) {
@@ -34,7 +34,10 @@ void Inputer::readNumberInput(SDL_Event event, vector<NumberButton> obn, Mix_Chu
 	}
 	else if (obn.at(10).clicked(event)) {
 		Mix_PlayChannel(-1, soundbeep, 0);
+		SDL_Delay(144);
+		return false;
 	}
+	return true;
 }
 
 void Inputer::showInput(SDL_Renderer* renderer, int x, int y)

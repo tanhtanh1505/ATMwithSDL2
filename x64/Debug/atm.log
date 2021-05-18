@@ -1,0 +1,60 @@
+﻿  Account.cpp
+  atm.cpp
+D:\C++\atm\atm.cpp(6,5): warning C4102: 'LOOP': unreferenced label
+  ATMmachine.cpp
+D:\C++\atm\ATMmachine.cpp(275,64): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+  CashWithdrawals.cpp
+  Inputer.cpp
+  MenuButton.cpp
+  NumberButton.cpp
+  Object.cpp
+  ta.cpp
+D:\C++\atm\ta.cpp(108,17): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Text.cpp
+  Generating Code...
+atm.obj : error LNK2019: unresolved external symbol SDL_PollEvent referenced in function SDL_main
+ATMmachine.obj : error LNK2001: unresolved external symbol SDL_PollEvent
+atm.obj : error LNK2019: unresolved external symbol SDL_RenderClear referenced in function SDL_main
+ATMmachine.obj : error LNK2001: unresolved external symbol SDL_RenderClear
+ta.obj : error LNK2001: unresolved external symbol SDL_RenderClear
+atm.obj : error LNK2019: unresolved external symbol SDL_RenderCopy referenced in function SDL_main
+ATMmachine.obj : error LNK2001: unresolved external symbol SDL_RenderCopy
+Object.obj : error LNK2001: unresolved external symbol SDL_RenderCopy
+ta.obj : error LNK2001: unresolved external symbol SDL_RenderCopy
+atm.obj : error LNK2019: unresolved external symbol SDL_RenderPresent referenced in function SDL_main
+ATMmachine.obj : error LNK2001: unresolved external symbol SDL_RenderPresent
+ta.obj : error LNK2001: unresolved external symbol SDL_RenderPresent
+ATMmachine.obj : error LNK2019: unresolved external symbol SDL_Delay referenced in function "void __cdecl ATM::selectMenu(struct SDL_Renderer *,union SDL_Event,class std::vector<class MenuButton,class std::allocator<class MenuButton> > &,int &,struct Mix_Chunk * &)" (?selectMenu@ATM@@YAXPEAUSDL_Renderer@@TSDL_Event@@AEAV?$vector@VMenuButton@@V?$allocator@VMenuButton@@@std@@@std@@AEAHAEAPEAUMix_Chunk@@@Z)
+Inputer.obj : error LNK2001: unresolved external symbol SDL_Delay
+ta.obj : error LNK2001: unresolved external symbol SDL_Delay
+ATMmachine.obj : error LNK2019: unresolved external symbol Mix_PlayChannelTimed referenced in function "void __cdecl ATM::selectMenu(struct SDL_Renderer *,union SDL_Event,class std::vector<class MenuButton,class std::allocator<class MenuButton> > &,int &,struct Mix_Chunk * &)" (?selectMenu@ATM@@YAXPEAUSDL_Renderer@@TSDL_Event@@AEAV?$vector@VMenuButton@@V?$allocator@VMenuButton@@@std@@@std@@AEAHAEAPEAUMix_Chunk@@@Z)
+Inputer.obj : error LNK2001: unresolved external symbol Mix_PlayChannelTimed
+Object.obj : error LNK2019: unresolved external symbol SDL_DestroyTexture referenced in function "public: __cdecl Object::~Object(void)" (??1Object@@QEAA@XZ)
+ta.obj : error LNK2019: unresolved external symbol SDL_GetError referenced in function "void __cdecl TA::logSDLError(class std::basic_ostream<char,struct std::char_traits<char> > &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,bool)" (?logSDLError@TA@@YAXAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@_N@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_RWFromFile referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_FreeSurface referenced in function "struct SDL_Texture * __cdecl TA::loadTexture(struct SDL_Renderer *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadTexture@TA@@YAPEAUSDL_Texture@@PEAUSDL_Renderer@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Text.obj : error LNK2001: unresolved external symbol SDL_FreeSurface
+ta.obj : error LNK2019: unresolved external symbol SDL_CreateWindow referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_DestroyWindow referenced in function "void __cdecl TA::quitSDL(struct SDL_Window *,struct SDL_Renderer *)" (?quitSDL@TA@@YAXPEAUSDL_Window@@PEAUSDL_Renderer@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_WaitEvent referenced in function "void __cdecl TA::waitUntilKeyPressed(void)" (?waitUntilKeyPressed@TA@@YAXXZ)
+ta.obj : error LNK2019: unresolved external symbol SDL_SetHint referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_CreateRenderer referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_CreateTextureFromSurface referenced in function "struct SDL_Texture * __cdecl TA::loadTexture(struct SDL_Renderer *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadTexture@TA@@YAPEAUSDL_Texture@@PEAUSDL_Renderer@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Text.obj : error LNK2001: unresolved external symbol SDL_CreateTextureFromSurface
+ta.obj : error LNK2019: unresolved external symbol SDL_RenderSetLogicalSize referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_DestroyRenderer referenced in function "void __cdecl TA::quitSDL(struct SDL_Window *,struct SDL_Renderer *)" (?quitSDL@TA@@YAXPEAUSDL_Window@@PEAUSDL_Renderer@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_Init referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol SDL_Quit referenced in function "void __cdecl TA::logSDLError(class std::basic_ostream<char,struct std::char_traits<char> > &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,bool)" (?logSDLError@TA@@YAXAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@_N@Z)
+ta.obj : error LNK2019: unresolved external symbol IMG_Load referenced in function "struct SDL_Texture * __cdecl TA::loadTexture(struct SDL_Renderer *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadTexture@TA@@YAPEAUSDL_Texture@@PEAUSDL_Renderer@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+ta.obj : error LNK2019: unresolved external symbol Mix_OpenAudio referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+ta.obj : error LNK2019: unresolved external symbol Mix_LoadWAV_RW referenced in function "void __cdecl TA::initSDL(struct SDL_Window * &,struct SDL_Renderer * &,struct Mix_Chunk * &)" (?initSDL@TA@@YAXAEAPEAUSDL_Window@@AEAPEAUSDL_Renderer@@AEAPEAUMix_Chunk@@@Z)
+Text.obj : error LNK2019: unresolved external symbol TTF_Init referenced in function "public: __cdecl Text::Text(struct _TTF_Font * &)" (??0Text@@QEAA@AEAPEAU_TTF_Font@@@Z)
+Text.obj : error LNK2019: unresolved external symbol TTF_OpenFont referenced in function "public: __cdecl Text::Text(struct _TTF_Font * &)" (??0Text@@QEAA@AEAPEAU_TTF_Font@@@Z)
+Text.obj : error LNK2019: unresolved external symbol TTF_RenderText_Solid referenced in function "public: void __cdecl Text::showText(struct _TTF_Font *,struct SDL_Renderer *)" (?showText@Text@@QEAAXPEAU_TTF_Font@@PEAUSDL_Renderer@@@Z)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\GL\SDL2-2.0.14\lib\x86\SDL2.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\GL\SDL2-2.0.14\lib\x86\SDL2main.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+SDL2_image.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+SDL2_mixer.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+SDL2_ttf.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\C++\atm\x64\Debug\atm.exe : fatal error LNK1120: 27 unresolved externals

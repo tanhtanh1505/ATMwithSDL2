@@ -6,17 +6,14 @@ void ATM::initDaTa(vector<Account> &list_account, int bank[], vector<NumberButto
 	ifstream file("Account.txt");
 	if (file.is_open()) {
 		string nf, id, username, name, password, mo, timecreat;
-		int money, numFail;
 		while (getline(file, nf, '.')) {
-			numFail = stoi(nf);
 			getline(file, id, '.');
 			getline(file, name, '.');
 			getline(file, username, '.');
 			getline(file, password, '.');
 			getline(file, mo, '.');
-			money = stoi(mo);
 			getline(file, timecreat, '.');
-			Account p(numFail, id, name, username, password, money, timecreat);
+			Account p(stoi(nf), id, name, username, password, stoi(mo), timecreat);
 			list_account.push_back(p);
 		}
 		file.close();
@@ -181,7 +178,7 @@ bool ATM::loginAccount(vector<Account>& list_account, Account*& currentAccount, 
 	}
 	else {
 		for (int i = 0; i < list_account.size(); i++) {
-			if (list_account.at(i).getUserName() == userInput.getInput()) {
+			if (list_account.at(i).checkAccount(userInput.getInput())) {
 				exist_account = true;
 				if (list_account.at(i).checkActive() == false) {
 					renderError(renderer, "lockedaccount.png");
@@ -223,7 +220,7 @@ bool ATM::loginAccount(vector<Account>& list_account, Account*& currentAccount, 
 }
 
 
-void ATM::depositMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
+bool ATM::depositMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
 	Account*& currentAccount, vector<Account>& list_account, int bank[], Mix_Chunk*& soundbeep)
 {
 	SDL_Texture* texturedepo = loadTexture(renderer, "depo.png");
@@ -274,6 +271,7 @@ RESULTSDEPOSIT:
 	resultsDepos.setRect(228, 290);
 	resultsDepos.setSize(to_string(sumDepoMoney).length() * 34, 50);
 
+	Inputer inputer;
 	while (true) {
 		while (SDL_PollEvent(&event) != 0)
 		{
@@ -287,12 +285,13 @@ RESULTSDEPOSIT:
 		resultsDepos.showText(fontText, renderer);
 
 		SDL_RenderPresent(renderer);
+
+		if (inputer.readNumberInput(event, obn, soundbeep) == false) return true;
 	}
-	
-	delete texturedepo;
+	return false;
 }
 
-void ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
+bool ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton> obn, vector<MenuButton> obb,
 	Account*& currentAccount, vector<Account>& list_account, int bank[], Mix_Chunk*& soundbeep)
 {
 	int sm;
@@ -312,7 +311,7 @@ void ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton
 		SDL_RenderCopy(renderer, texturedepo, NULL, NULL);
 		
 		inputNumber.readNumberInput(event, obn, soundbeep);
-		inputNumber.showInput(renderer, 220, 255);
+		inputNumber.showInput(renderer, 240, 256);
 		if (inputNumber.done()) {
 			sm = inputNumber.getNumberInput();
 			break;
@@ -332,7 +331,7 @@ void ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton
 		SDL_RenderCopy(renderer, texturedepo, NULL, NULL);
 
 		inputUser.readNumberInput(event, obn, soundbeep);
-		inputUser.showInput(renderer, 220, 255);
+		inputUser.showInput(renderer, 240, 256);
 
 		if (inputUser.done()) {
 			usn = inputUser.getInput();
@@ -357,6 +356,8 @@ void ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton
 	}
 	if (!suc) texturedepo = loadTexture(renderer, "canfindusn.png");
 	
+	Inputer inputer;
+
 	while (!quit) {
 		while (SDL_PollEvent(&event) != 0)
 		{
@@ -370,12 +371,14 @@ void ATM::sendMoney(SDL_Renderer* renderer, SDL_Event event, vector<NumberButton
 
 		SDL_RenderCopy(renderer, texturedepo, NULL, NULL);
 
+		if (inputer.readNumberInput(event, obn, soundbeep) == false) return true;
+
 		SDL_RenderPresent(renderer);
 	}
-
+	return false;
 }
 
-void ATM::cashWithdrawals(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>& obb, vector<NumberButton> obn,
+bool ATM::cashWithdrawals(SDL_Renderer* renderer, SDL_Event event, vector<MenuButton>& obb, vector<NumberButton> obn,
 	int& choose, int bank[], Account*& currentAccount, vector<Account>& list_account, Mix_Chunk*& soundbeep)
 {
 CASHAGAIN:
@@ -392,7 +395,7 @@ CASHAGAIN:
 	Text maxMoney(fontText), minMoney(fontText);
 	maxMoney.setText(to_string(maxmoney));
 	maxMoney.setRect(305, 160);
-	maxMoney.setSize(17*5, 28);
+	maxMoney.setSize(17 * 5, 28);
 	minMoney.setText(to_string(minmoney));
 	minMoney.setSize(17 * 3, 28);
 	minMoney.setRect(308, 218);
@@ -437,7 +440,7 @@ CASHAGAIN:
 	}
 	texturecashwd = loadTexture(renderer, "success.png");
 
-	SDL_Texture* cashout = loadTexture(renderer, "cash.png");
+	SDL_Texture* receipt = loadTexture(renderer, "receipt.png");
 	SDL_Rect r1;
 	r1.h = 0;
 	r1.w = 1080;
@@ -447,7 +450,21 @@ CASHAGAIN:
 	r2.h = 0;
 	r2.w = 108;
 	r2.x = 600;
-	r2.y = 100;
+	r2.y = 102;
+
+	SDL_Texture* cashout = loadTexture(renderer, "casho.png");
+	SDL_Rect r3;
+	r3.h = 0;
+	r3.w = 1920;
+	r3.x = 0;
+	r3.y = 1080;
+	SDL_Rect r4;
+	r4.h = 0;
+	r4.w = 200;
+	r4.x = 190;
+	r4.y = 536;
+
+	Inputer inputer;
 
 	while (!quit) {
 		while (SDL_PollEvent(&event) != 0)
@@ -462,17 +479,27 @@ CASHAGAIN:
 
 		SDL_RenderCopy(renderer, texturecashwd, NULL, NULL);
 
-		SDL_RenderCopy(renderer, cashout, &r1, &r2);
+		SDL_RenderCopy(renderer, receipt, &r1, &r2);
 
-		if (r1.h < 1200) {
+		SDL_RenderCopy(renderer, cashout, &r3, &r4);
+
+		if (r1.h < 900) {
 			r1.h += 10;
 			r1.y -= 10;
 			r2.h = r1.h / 10;
 		}
 
+		if (r3.h < 339) {
+			r3.h += 5;
+			r3.y -= 5;
+			r4.h = r3.h / 5;
+		}
+
+		if (inputer.readNumberInput(event, obn, soundbeep) == false) return true;
+
 		SDL_RenderPresent(renderer);
 	}
-
+	return false;
 }
 
 void ATM::saveDaTa(vector<Account> list_account, int bank[])

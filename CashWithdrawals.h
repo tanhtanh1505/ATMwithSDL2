@@ -9,6 +9,7 @@ using namespace std;
 namespace CASHW {
 
 	void solve(int a[], int tg, bool& check);
+	void solve2(int a[], int tg, bool& check);
 	bool cashW(int bank[], int money);
 }
 #endif // !CashWithdrawals

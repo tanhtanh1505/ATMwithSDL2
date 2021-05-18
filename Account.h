@@ -22,17 +22,19 @@ public:
 	Account(int numFail_, string id_, string name_, string user_name_, string password_, int money_, string timeCreat_);
 	~Account();
 	void creatData(string name_, string username_, string password_);
-	string getDateCreat() { return timeCreat; }
 	void print();
 	void writeToSource(string st);
 	void writeStatus(string s);
-	string getUserName() { return user_name; }
 	bool checkPass(string pw);
-	bool checkActive() { return active; }
-	bool loginSuccess() { return logSuccess; }
 	void showHistory();
 	bool deposit(int tg);
 	bool sendMoney(int sm);
 	bool recieveMoney(int sm);
-	int getAccountBalance() { return money; }
+	bool checkAccount(string s);
+
+	string getDateCreat() const { return timeCreat; }
+	string getUserName() const { return user_name; }
+	bool checkActive() const { return active; }
+	bool loginSuccess() const { return logSuccess; }
+	int getAccountBalance() const { return money; }
 };

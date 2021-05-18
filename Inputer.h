@@ -17,7 +17,7 @@ public:
 	~Inputer();
 	bool done() { return is_done; }
 	void setDone(bool ok) { is_done = ok; }
-	void readNumberInput(SDL_Event event, vector<NumberButton> obn, Mix_Chunk*& soundbeep);
+	bool readNumberInput(SDL_Event event, vector<NumberButton> obn, Mix_Chunk*& soundbeep);
 	string getInput() { return sread; }
 	void showInput(SDL_Renderer* renderer, int x, int y);
 	int getNumberInput();

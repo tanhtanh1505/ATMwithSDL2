@@ -2,7 +2,6 @@
 
 Account::Account()
 {
-
 }
 
 Account::Account(int numFail_, string id_, string name_, string user_name_, string password_, int money_, string timeCreat_)
@@ -31,7 +30,7 @@ void Account::creatData(string name_, string username_, string password_)
 	password = password_;
 	money = 0;
 	active = true;
-	id = to_string(rand() % 1000000);
+	id = to_string(stoi(username_)/2) + to_string(rand() % 100);
 	timeCreat = getTimeNow();
 	numFail = 0;
 	logSuccess = false;
@@ -42,7 +41,7 @@ void Account::print()
 {
 	system("cls");
 	cout << "\n-----------------------------------------\nTime creat: " << timeCreat << endl;
-	cout <<"ID: "<< id << "\nName: " << name << "\nAccount Balance: " << money << endl;
+	cout << "ID: " << id << "\nName: " << name << "\nUser name: " << user_name << "\nAccount Balance: " << money << endl;
 	cout << "-----------------------------------------\n";
 }
 
@@ -121,4 +120,10 @@ bool Account::recieveMoney(int sml)
 		return true;
 	}
 	else return false;
+}
+
+bool Account::checkAccount(string s)
+{
+	if (s == user_name || s == id) return true;
+	return false;
 }
